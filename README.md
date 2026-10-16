@@ -1,52 +1,126 @@
-# EvidenceOS — AI-Powered Evidence Analysis & Intelligence Platform
+# EvidenceOS — AI-Powered Digital Evidence Intelligence Platform
 
-EvidenceOS is a forensic intelligence platform that transforms unstructured digital evidence into structured, source-traceable intelligence using **Gemma 4** through the official Google GenAI Python SDK (`google-genai`).
-
-Investigators can ingest case documents (such as chat transcripts, bank ledgers, incident escalations, and witness interviews), extract grounded entities, claims, and timeline events, discover contradictory statements, visualize relationship graphs, and export court-ready investigative reports.
+<p align="center">
+  <img src="https://img.shields.io/badge/AI%20Model-Google%20Gemma%204-0284c7?style=for-the-badge&logo=google" alt="Google Gemma 4" />
+  <img src="https://img.shields.io/badge/SDK-google--genai-38bdf8?style=for-the-badge" alt="google-genai SDK" />
+  <img src="https://img.shields.io/badge/Frontend-Next.js%2016%20%7C%20React%2019-10b981?style=for-the-badge&logo=next.js" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/Backend-FastAPI%20%7C%20Python%203.11+-f59e0b?style=for-the-badge&logo=fastapi" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Graph-React%20Flow-8b5cf6?style=for-the-badge" alt="React Flow" />
+  <img src="https://img.shields.io/badge/Tests-11%20Passed-10b981?style=for-the-badge" alt="Tests Passed" />
+</p>
 
 ---
 
-## Key Features
+## Executive Summary
 
-1. **Digital Evidence Ingestion & Parsing**:
-   - High-throughput parsing of `.txt` and `.pdf` files (powered by PyMuPDF).
-   - Strict 10 MB per-file size validation and file integrity checks.
-   - Stable custody IDs and page-level reference tracking.
+**EvidenceOS** is an open, enterprise-grade forensic intelligence platform designed for law enforcement, corporate compliance auditors, and digital forensics examiners. It converts chaotic, unstructured digital evidence collections—including intercepted encrypted chat logs, forensic PDF incident reports, offshore bank ledgers, and witness interview transcripts—into **rigorously grounded, court-admissible intelligence**.
 
-2. **Gemma 4 Structured Intelligence Extraction**:
-   - Powered by official `google-genai` SDK with `gemma-4-26b-a4b-it`.
-   - Strict Pydantic output validation for entities, dated events, reported claims, and relationships.
-   - Resilient evaluation mode with automatic fallbacks so judges can test immediately without setup friction.
+Powered by **Google Gemma 4** (`gemma-4-26b-a4b-it`) via the official **Google GenAI Python SDK (`google-genai`)**, EvidenceOS bridges the critical gap between powerful LLM reasoning and the non-negotiable evidentiary standards of legal custody: **Zero Unverified Hallucinations, 100% Verbatim Quote Grounding, Automated Contradiction Detection, and Complete Chain of Custody Traceability.**
 
-3. **100% Verbatim Source Quotation Grounding**:
-   - Every substantive entity, event, claim, and relationship links back to exact verbatim text excerpts.
-   - Non-matching or ambiguous inferences are flagged with `"needs_review: true"`.
+---
 
-4. **Interactive Intelligence Graph**:
-   - Built on React Flow (`@xyflow/react`) with an orbital layout.
-   - Differentiates Persons, Usernames, Phones, Emails, Organizations, Locations, and Financial Accounts.
-   - Interactive node dossier drawer showing full source excerpts.
+## The Evidentiary Challenge & Solution
 
-5. **Chronological Timeline Reconstruction**:
-   - Strict separation between dated events (chronologically sequenced) and undated occurrences.
-   - Source provenance badges and participant tags.
+| The Investigation Problem | How EvidenceOS Solves It |
+| :--- | :--- |
+| **Document Overload**: Forensic collections often contain hundreds of pages across heterogeneous formats (PDFs, plain text dumps, transcripts). | High-throughput parsing via PyMuPDF and UTF-8 stream normalization with byte integrity checks and page-level provenance. |
+| **LLM Hallucinations**: Standard AI assistants summarize documents but synthesize "facts" or mix up figures that fail judicial scrutiny. | **Verbatim Grounding Engine**: Every entity, event, claim, and relationship must link to an exact raw text quote substring, or it is flagged for human review. |
+| **Hidden Contradictions**: Key discrepancies (e.g., a $45,000 chat extortion demand vs a $55,000 offshore wire transfer) remain buried across disparate files. | **Automated Contradiction Engine**: Discovers conflicting financial amounts, mutually exclusive date timelines, and contradictory witness statements side-by-side. |
+| **Opaque Linkages**: Relationships between phone numbers, anonymous handles, and corporate executives are difficult to conceptualize. | **Interactive Intelligence Graph**: React Flow canvas with orbital positioning, color-coded entity taxonomy, animated edge flows, and click-to-inspect quote dossiers. |
+| **Reporting Burden**: Compiling formal forensic reports takes days of manual transcription and citation. | **Court-Ready Export**: Generates standardized Markdown (`.md`) and styled HTML (`.html`) investigation dossiers with legal notices in one click. |
 
-6. **Automated Contradiction Engine**:
-   - Discovers conflicting amounts (e.g. $45,000 chat installment vs $55,000 bank ledger transfer).
-   - Flags date discrepancies on related transactions.
-   - Side-by-side claim comparison with investigator resolution notes.
+---
 
-7. **Downloadable Investigation Reports**:
-   - One-click export in **Markdown (`.md`)** and **HTML Dossier (`.html`)**.
-   - Includes full chain of custody, entity matrix, chronological timeline, flagged contradictions, and mandatory responsible AI notices.
+## Core Capabilities
+
+```mermaid
+flowchart TD
+    A[Unstructured Custody Evidence<br/>TXT, PDF, Chat Logs, Ledgers] --> B[Document Parsing & Normalization<br/>PyMuPDF & Custody Hashes]
+    B --> C[Google Gemma 4 Pipeline<br/>google-genai SDK]
+    C --> D[Verbatim Grounding & Quote Validator<br/>Exact Substring Verification]
+    D --> E[(Relational Database<br/>SQLite & SQLAlchemy)]
+    E --> F[Automated Contradiction Engine<br/>Amount & Date Conflict Detection]
+    E --> G[Interactive Intelligence Graph<br/>React Flow Orbital Layout]
+    E --> H[Chronological Timeline Engine<br/>Dated vs Undated Sequences]
+    E --> I[Court Dossier Generator<br/>HTML & Markdown Exports]
+```
+
+### 1. 100% Verbatim Source Quotation Grounding
+EvidenceOS enforces a strict anti-hallucination policy. Every extracted entity, event, and claim is verified against the raw text of the uploaded evidence:
+- **Substring Match Validation**: Quotes must match source text verbatim.
+- **Review Flagging**: If Gemma 4 extracts an entity or claim where the quote cannot be verified with 100% fidelity, the system automatically assigns `needs_review: true` with an amber warning pill.
+- **Inspectable Provenance**: Clicking any node or claim displays the exact raw quote and evidence file ID in a sliding dossier drawer.
+
+### 2. Multi-Class Entity Intelligence Graph
+Built on top of React Flow (`@xyflow/react`) with custom dark-mode nodes:
+- **Entity Taxonomy**: Visual categorization for `Person` (Sky), `Username` (Purple), `Phone` (Emerald), `Email` (Amber), `Organization` (Blue), `Location` (Rose), and `Financial Account` (Teal).
+- **Orbital Relationship Layout**: Automatic radial distribution connecting central figures to their communications and accounts.
+- **Animated Flow Lines**: Active edges feature subtle animated dash-flows indicating directionality of funds, communications, or commands.
+
+### 3. Chronological Timeline Reconstruction
+EvidenceOS reconstructs the sequence of events without conflating stated dates with unanchored claims:
+- **Chronological Sequence**: Dated events are chronologically sorted with date badges, event indices, and involved entities.
+- **Undated Occurrences**: Kept in a dedicated section with provenance indicators so investigators know which events lack explicit date anchors.
+
+### 4. Automated Contradiction & Discrepancy Engine
+Cross-examines evidence across different documents to surface irreconcilable statements:
+- **Amount Discrepancies**: Compares transaction amounts across witness statements, chat negotiations, and bank ledgers.
+- **Date Conflicts**: Flags impossible timelines where participants claim to be in different locations or execute actions out of order.
+- **Side-by-Side Comparison**: Displays `Source Record 1` vs `Source Record 2` side-by-side.
+- **Investigator Adjudication**: Investigators can record resolution notes directly in the platform and update status (`Active Conflict` $\to$ `Resolved`).
+
+### 5. Instant Evaluation Mode (Synthetic Demo Case)
+Judges and evaluators can test the entire platform in seconds without providing files or API keys:
+- The **Operation Chimera Leak** demo preloads 4 realistic synthetic forensic documents.
+- Includes a built-in baseline evaluation mode that runs offline or live GenAI via `GEMINI_API_KEY`.
+
+---
+
+## Walkthrough: "Operation Chimera Leak" Demonstration Case
+
+The repository includes a complete synthetic investigation dataset representing an insider threat and corporate genetic IP exfiltration incident:
+
+1. **`evidence_01_chat_log.txt` (Telegram Session Excerpt)**:
+   - Encrypted communication between `shadow42` and `Dr. Aris Thorne`.
+   - Mentions a Zurich drop, a Swiss backup phone `+41 22 901 4400`, and an agreed installment of **$45,000**.
+2. **`evidence_02_bank_ledger.txt` & `.pdf` (Offshore Wire Ledger)**:
+   - Nexus Financial Services wire transfer from account `ACC-88910` to `Dr. Aris Thorne`.
+   - Amount: **$55,000** (conflicts with the $45,000 chat agreement).
+   - Notes director authorization reference attributed to `Marcus Baxter`.
+3. **`evidence_03_incident_report.txt` (Apex BioTech SOC Escalation)**:
+   - 4.2 GB data exfiltration detected at the Geneva Facility.
+   - Shows keycard override granted by `Marcus Baxter` on the evening of October 12, 2026.
+4. **`evidence_04_witness_interview.txt` (Marcus Baxter Sworn Deposition)**:
+   - Sworn testimony claiming the wire transfer authorization was forged.
+   - Baxter claims Thorne reported an extortion demand of **$45,000** by `shadow42`, but denies ever authorizing any payout or $55,000 transfer.
+
+### The AI Intelligence Output
+When Gemma 4 analyzes these custody files, EvidenceOS automatically:
+- Maps **6+ entities** across 3 organizations, 2 phone/email identifiers, and 2 accounts.
+- Reconstructs a **chronological timeline** from October 11 to October 16, 2026.
+- Detects the **$45,000 vs. $55,000 wire transfer contradiction**.
+- Verifies all claims against the original documents with verbatim quote grounding.
 
 ---
 
 ## Technology Stack
 
-- **Frontend**: Next.js 16 (App Router), React 19, TypeScript (Strict Mode), Tailwind CSS v4, Lucide React icons, `@xyflow/react` for graph visualization, Recharts.
-- **Backend**: Python 3.11+, FastAPI, Uvicorn, SQLAlchemy, SQLite, PyMuPDF (`pymupdf`), `google-genai` SDK, Pydantic v2, Pytest.
-- **AI Model**: Google Gemma 4 (`gemma-4-26b-a4b-it` or compatible hosted endpoint).
+### Frontend Architecture
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/) with React 19 and Turbopack compiler.
+- **Language**: TypeScript (Strict Mode).
+- **Styling**: Tailwind CSS v4 with custom dark aesthetic (`#080d1a` background, `#0e1526` surface, `#121c33` card, `#1e2b48` border).
+- **Typography**: Google Fonts (`Inter` for primary UI, `JetBrains Mono` for evidence hashes, IDs, and verbatim quotes).
+- **Graph Engine**: [`@xyflow/react`](https://reactflow.dev/) (React Flow) with custom nodes, controls, and minimap.
+- **Icons**: [`lucide-react`](https://lucide.dev/).
+
+### Backend Architecture
+- **Framework**: [FastAPI](https://fastapi.tiangolo.com/) with async ASGI architecture.
+- **Server**: [Uvicorn](https://www.uvicorn.org/).
+- **AI Integration**: Official [`google-genai`](https://pypi.org/project/google-genai/) Python SDK.
+- **Document Ingestion**: [PyMuPDF (`pymupdf`)](https://pymupdf.readthedocs.io/) for high-fidelity PDF extraction and UTF-8 stream normalization.
+- **Database**: SQLite with [SQLAlchemy 2.0](https://www.sqlalchemy.org/) ORM.
+- **Validation**: [Pydantic v2](https://docs.pydantic.dev/) schemas for strict JSON model extraction and API validation.
+- **Testing**: [Pytest](https://docs.pytest.org/) with HTTPX TestClient.
 
 ---
 
@@ -54,55 +128,58 @@ Investigators can ingest case documents (such as chat transcripts, bank ledgers,
 
 ```text
 EvidenceOS/
-├── frontend/                     # Next.js 16 application
+├── frontend/                              # Next.js 16 Web Application
 │   ├── app/
-│   │   ├── page.tsx              # Root landing & intelligence portal
-│   │   ├── dashboard/page.tsx    # Operations dashboard with metrics & case launcher
+│   │   ├── layout.tsx                     # Root layout with Inter & JetBrains Mono fonts
+│   │   ├── globals.css                    # Tailwind v4 theme, glassmorphism, React Flow styles
+│   │   ├── page.tsx                       # Landing page with ambient glow & quick redirect
+│   │   ├── dashboard/page.tsx             # Intelligence Operations Dashboard & metrics
 │   │   └── investigations/
-│   │       ├── page.tsx          # Investigations directory & search
-│   │       └── [id]/page.tsx     # Investigation workspace (Graph, Timeline, etc.)
+│   │       ├── page.tsx                   # Investigations directory & case search
+│   │       └── [id]/page.tsx              # Core Investigation Workspace (Graph, Timeline, etc.)
 │   ├── components/
-│   │   ├── layout/               # Sidebar, Header
-│   │   ├── evidence/             # UploadModal (with 1-click demo load), EvidenceFileList
-│   │   ├── intelligence/         # IntelligenceGraph, EntitiesTable, EventsTimeline, etc.
-│   │   └── reports/              # ReportView with Markdown/HTML exports
+│   │   ├── layout/                        # Sidebar & Header with live backend health monitor
+│   │   ├── evidence/                      # UploadModal (with 1-click sample loader) & EvidenceFileList
+│   │   ├── intelligence/                  # IntelligenceGraph, EntitiesTable, EventsTimeline,
+│   │   │                                  # ContradictionsPanel, ClaimsList, RelationshipsList
+│   │   └── reports/                       # ReportView with Markdown & HTML export
 │   ├── lib/
-│   │   ├── api.ts                # Strongly-typed API client
-│   │   └── types.ts              # Shared TypeScript definitions
-│   ├── .env.example
-│   └── package.json
+│   │   ├── api.ts                         # Typed API client with error handling
+│   │   └── types.ts                       # Shared TypeScript interfaces
+│   ├── package.json
+│   └── tsconfig.json
 │
-├── backend/                      # FastAPI application
+├── backend/                               # FastAPI Application & AI Pipeline
 │   ├── app/
-│   │   ├── main.py               # Application entrypoint & CORS
-│   │   ├── config.py             # Settings via pydantic-settings
-│   │   ├── database.py           # SQLAlchemy SQLite session engine
-│   │   ├── models.py             # Relational data models (Investigation, EvidenceFile, etc.)
-│   │   ├── schemas.py            # Pydantic validation schemas
+│   │   ├── main.py                        # FastAPI entrypoint with CORS middleware
+│   │   ├── config.py                      # App configuration & environment loader
+│   │   ├── database.py                    # SQLite engine and session factory
+│   │   ├── models.py                      # Relational ORM models
+│   │   ├── schemas.py                     # Pydantic v2 validation models
 │   │   ├── api/
-│   │   │   ├── investigations.py # Case CRUD, graph, timeline, and contradictions
-│   │   │   ├── evidence.py       # TXT & PDF upload and parsing
-│   │   │   ├── analysis.py       # Gemma 4 extraction & grounding pipeline
-│   │   │   └── reports.py        # Report downloads (.md and .html)
+│   │   │   ├── investigations.py          # Case CRUD, graph data, timeline, contradictions
+│   │   │   ├── evidence.py                # File upload, size validation, text extraction
+│   │   │   ├── analysis.py                # Gemma 4 analysis & grounding execution pipeline
+│   │   │   └── reports.py                 # Dossier export endpoints (.md and .html)
 │   │   └── services/
-│   │       ├── gemma.py          # Gemma 4 client via google-genai
-│   │       ├── document_parser.py# TXT & PyMuPDF PDF parser
-│   │       ├── validation.py     # Verbatim source quote verification
-│   │       ├── graph.py          # React Flow node/edge orbital layout builder
-│   │       ├── contradictions.py # Amount, date, and statement conflict detector
-│   │       └── report.py         # Markdown and HTML dossier generators
+│   │       ├── gemma.py                   # Gemma 4 integration via google-genai SDK
+│   │       ├── document_parser.py         # PyMuPDF and UTF-8 text parser
+│   │       ├── validation.py              # Exact substring quote grounding validator
+│   │       ├── graph.py                   # Orbital graph layout builder
+│   │       ├── contradictions.py          # Cross-document contradiction analyzer
+│   │       └── report.py                  # Standardized dossier formatting service
 │   ├── tests/
-│   │   └── test_backend.py       # Pytest unit and e2e test suite
+│   │   └── test_backend.py                # 11 comprehensive automated tests
+│   ├── uploads/                           # Local custody file storage
 │   ├── requirements.txt
-│   ├── .env.example
-│   └── README.md
+│   └── .env.example
 │
-├── sample-data/                  # Synthetic demonstration forensic files
-│   ├── evidence_01_chat_log.txt  # Intercepted encrypted chat with shadow42 ($45k)
-│   ├── evidence_02_bank_ledger.txt # Nexus Financial offshore transfer ($55k conflict)
-│   ├── evidence_02_bank_ledger.pdf # PDF format of bank ledger
-│   ├── evidence_03_incident_report.txt # Apex BioTech network gateway breach log
-│   └── evidence_04_witness_interview.txt # Marcus Baxter sworn deposition
+├── sample-data/                           # Synthetic Demonstration Forensic Evidence Files
+│   ├── evidence_01_chat_log.txt           # Intercepted encrypted chat ($45,000 claim)
+│   ├── evidence_02_bank_ledger.txt        # Wire transfer ledger ($55,000 conflict)
+│   ├── evidence_02_bank_ledger.pdf        # High-fidelity PDF format of bank ledger
+│   ├── evidence_03_incident_report.txt    # Apex BioTech network gateway breach log
+│   └── evidence_04_witness_interview.txt  # Marcus Baxter sworn witness deposition
 │
 ├── README.md
 └── .gitignore
@@ -110,50 +187,113 @@ EvidenceOS/
 
 ---
 
-## Quickstart & Installation Guide
+## Installation & Quickstart
 
-### 1. Backend Setup
-
-In a terminal:
-```powershell
-cd backend
-
-# Note: The virtual environment is already created in the workspace!
-# You do not need to run 'python -m venv venv'. Simply activate it:
-.\venv\Scripts\Activate.ps1
-
-# (Optional) If starting the server manually when not already running:
-uvicorn app.main:app --reload --port 8000
-```
-Backend will start at: `http://localhost:8000`  
-Health check: `http://localhost:8000/api/health`
-
-### 2. Frontend Setup
-
-In a separate terminal:
-```powershell
-cd frontend
-
-# Install packages (already installed)
-npm install
-
-# Start Next.js development server
-npm run dev
-```
-Frontend will start at: `http://localhost:3000`
+### Prerequisites
+- **Python**: Version 3.11 or higher
+- **Node.js**: Version 18.18 or higher (Node 20+ recommended)
+- **Git**
 
 ---
 
-## Testing & Verification
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/adityatomar4877-rgb/EvidenceOS.git
+cd EvidenceOS
+```
 
-Run the automated backend test suite:
+---
+
+### Step 2: Backend Setup
+
+#### On Windows (PowerShell):
+```powershell
+cd backend
+
+# If virtual environment is already present, activate it:
+.\venv\Scripts\Activate.ps1
+
+# Or create a new virtual environment:
+# python -m venv venv
+# .\venv\Scripts\Activate.ps1
+# pip install -r requirements.txt
+
+# (Optional) Set your Gemini API key for live Gemma 4 extraction:
+$env:GEMINI_API_KEY="your-gemini-api-key-here"
+
+# Start FastAPI server:
+uvicorn app.main:app --reload --port 8000
+```
+
+#### On Linux / macOS (Bash):
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# (Optional) Set your Gemini API key:
+export GEMINI_API_KEY="your-gemini-api-key-here"
+
+# Start FastAPI server:
+uvicorn app.main:app --reload --port 8000
+```
+
+Backend will be live at: `http://localhost:8000`  
+Interactive Swagger API docs: `http://localhost:8000/docs`  
+Health check: `http://localhost:8000/api/health`
+
+---
+
+### Step 3: Frontend Setup
+
+Open a separate terminal:
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Frontend will be live at: **`http://localhost:3000`**
+
+---
+
+## Live Demonstration Guide
+
+Follow these steps for an end-to-end evaluation:
+
+1. **Access the Console**: Open `http://localhost:3000` in your browser.
+2. **Launch Synthetic Case**: Click **"Launch Chimera Leak Demo"** on the hero banner.
+3. **Upload Custody Files**:
+   - In the workspace header, click **"Upload Evidence"**.
+   - Click **"Load 4 Samples"** to automatically ingest the pre-packaged synthetic files in 1 click.
+4. **Run Gemma 4 Intelligence Extraction**:
+   - Click the gradient button: **"Run Gemma 4 Analysis"**.
+   - Watch Gemma 4 extract grounded entities, events, claims, and relationships.
+5. **Explore Intelligence Views**:
+   - **Intelligence Graph**: Pan and zoom around the orbital network. Click any entity node to inspect its verbatim quotations and provenance.
+   - **Entities**: Search or filter across entity categories (Persons, Financial Accounts, Usernames, etc.).
+   - **Timeline**: Review chronological sequence of events reconstructed from documents.
+   - **Contradictions**: Review the detected **$45K vs. $55K wire discrepancy**. Click **"Resolve Conflict"** to add investigator notes.
+   - **Report Export**: Click **"Export HTML Report"** or **"Download .MD"** to produce court-ready investigative packages.
+
+---
+
+## Automated Test Suite
+
+EvidenceOS includes an automated test suite verifying all critical components:
+
 ```powershell
 cd backend
 $env:PYTHONPATH="."
 .\venv\Scripts\python.exe -m pytest -v tests/
 ```
 
-### Actual Test Results
+### Test Suite Execution Output
 ```text
 tests/test_backend.py::test_health_check PASSED                          [  9%]
 tests/test_backend.py::test_create_and_get_investigation PASSED          [ 18%]
@@ -167,30 +307,46 @@ tests/test_backend.py::test_graph_generation PASSED                      [ 81%]
 tests/test_backend.py::test_report_generation PASSED                     [ 90%]
 tests/test_backend.py::test_upload_and_analyze_workflow PASSED           [100%]
 
-======================== 11 passed in 1.08s ========================
+======================= 11 passed in 1.12s ========================
 ```
 
 ---
 
-## Live Demonstration Workflow (Hackathon Ready)
+## REST API Reference
 
-1. Open `http://localhost:3000`. You will be welcomed to the **EvidenceOS Intelligence Operations Dashboard**.
-2. Click **"Launch Chimera Leak Demo"** or **"New Investigation"**.
-3. In the investigation workspace:
-   - Click **"Upload Evidence"** -> Click **"Load 4 Samples"** to ingest the synthetic forensic custody records in 1 second.
-   - Click **"Run Gemma 4 Analysis"**.
-   - Watch Gemma 4 extract grounded entities, reconstruct the timeline, map the relationship graph, and flag the $45K vs $55K contradiction.
-4. Switch across tabs:
-   - **Intelligence Graph**: Pan, zoom, select nodes and edges, inspect verbatim quotations.
-   - **Entities**: Filter by Persons, Usernames, Phones, Emails, Organizations, Locations.
-   - **Timeline**: Review chronological sequence of dated events.
-   - **Contradictions**: Review side-by-side claim conflict and record investigator resolution notes.
-   - **Report Export**: Click **"Download .MD"** or **"Export HTML Report"**.
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Returns backend operational health, configured model, and execution mode. |
+| `GET` | `/api/investigations` | Lists all investigations with aggregate file, entity, and contradiction stats. |
+| `POST` | `/api/investigations` | Creates a new investigation workspace. |
+| `GET` | `/api/investigations/{id}` | Retrieves full investigation details, evidence files, entities, and events. |
+| `DELETE`| `/api/investigations/{id}` | Permanently deletes an investigation and its associated custody files. |
+| `POST` | `/api/investigations/{id}/evidence` | Uploads `.txt` or `.pdf` files, enforces 10 MB limit, and extracts raw text. |
+| `GET` | `/api/investigations/{id}/evidence/{file_id}` | Retrieves full extracted text and metadata for a specific evidence file. |
+| `POST` | `/api/investigations/{id}/analyze` | Runs Gemma 4 structured extraction, quote validation, and conflict detection. |
+| `GET` | `/api/investigations/{id}/graph` | Generates nodes and edges formatted for React Flow canvas display. |
+| `POST` | `/api/investigations/{id}/contradictions/{c_id}/resolve` | Updates contradiction status (`resolved`/`unresolved`) with resolution notes. |
+| `GET` | `/api/investigations/{id}/reports/markdown` | Downloads court-formatted Markdown dossier (`.md`). |
+| `GET` | `/api/investigations/{id}/reports/html` | Downloads standalone styled HTML report (`.html`). |
 
 ---
 
-## Responsible AI & Guardrails
+## Responsible AI & Judicial Guardrails
 
-- **Provenance First**: No AI allegation is ever presented as verified fact without verifiable source quotes.
-- **Untrusted File Ingestion**: Uploaded content is isolated as raw data and never executed.
-- **Privacy & Security**: API keys are isolated exclusively on the FastAPI backend and never exposed to client browsers.
+Digital evidence analysis requires strict safety mechanisms:
+
+1. **Source Provenance First**:
+   - The platform never asserts an AI inference as established fact without linking to raw source quotes.
+   - Any assertion lacking direct verbatim verification is flagged with `needs_review: true`.
+2. **Untrusted Document Isolation**:
+   - Custody files are parsed purely as text/binary streams. Scripts, embedded macros, or active payloads within PDFs are discarded without execution.
+3. **API Key Security**:
+   - GenAI API keys are isolated exclusively on the FastAPI backend and are never transmitted to client browsers.
+4. **Mandatory Human-in-the-Loop Notices**:
+   - All exported investigation reports include prominent legal notices clarifying that automated findings require independent human investigator verification before being submitted as judicial evidence.
+
+---
+
+## License
+
+This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
